@@ -1,0 +1,11 @@
+build
+.build_*/
+*.pyc
+*.swp
+*.so
+*.pyc
+*.mex
+
+*screenlog*
+evaluation/model/*
+!evaluation/model/
