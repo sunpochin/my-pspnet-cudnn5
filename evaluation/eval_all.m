@@ -13,7 +13,7 @@ switch data_name
     case 'ADE20K'
         isVal = true; %evaluation on valset
         step = 500; %equals to number of images divide num of GPUs in testing e.g. 500=2000/4
-        data_root = '/data/ADEChallengeData2016'; %root path of dataset
+        data_root = '../data/ADEChallengeData2016'; %root path of dataset
         eval_list = 'list/ADE20K_val.txt'; %evaluation list, refer to lists in folder 'samplelist' (file path: ${data_root}/${eval_list})
         save_root = 'mc_result/ADE20K/val/pspnet50_473/'; %root path to store the result image
         model_weights = 'model/pspnet50_ADE20K.caffemodel';
@@ -68,7 +68,7 @@ runID = 1;
 gpu_num = size(gpu_id_array,2);
 index_array = [(runID-1)*gpu_num+1:runID*gpu_num];
 
-parfor i = 1:gpu_num %change 'parfor' to 'for' if singe GPU testing is used
+for i = 1:gpu_num %change 'parfor' to 'for' if singe GPU testing is used
   eval_sub(data_name,data_root,eval_list,model_weights,model_deploy,fea_cha,base_size,crop_size,data_class,data_colormap, ...
            is_save_feat,save_gray_folder,save_color_folder,save_feat_folder,gpu_id_array(i),index_array(i),step,skipsize,scale_array,mean_r,mean_g,mean_b);
 end
